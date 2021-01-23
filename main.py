@@ -1,15 +1,18 @@
 from flask import Flask, render_template, url_for, redirect
 from flask_wtf import FlaskForm
-from wtforms import StringField
+from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+Bootstrap(app)
 
 app.secret_key = "your-secret-key-should-not-be-here"
 
 
 class SimpleForm(FlaskForm):
     name = StringField('Your Name', validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 
 @app.route("/")
